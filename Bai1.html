@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <h1>Phân công giao hàng</h1>
+    <div id="div1">
+        <p><b>Tên công việc</b></p>
+        <form><input type="text" id="name_task" placeholder="abc"></form>
+        <p><b>Người phụ trách</b></p>
+        <form><input type="text" id="name_employee" placeholder="xyx bn"></form>
+        <p><b>Nơi nhận hàng</b></p>
+        <select id="place_receive">
+            <option>Vui lòng chọn tỉnh/thành phố nhận hàng</option>
+            <option value="Hà Nội">Hà Nội</option>
+            <option value="Hà Nam">Hà Nam</option>
+        </select>
+        <p><b>Nơi giao hàng</b></p>
+        <select id="place_send">
+            <option>Vui lòng chọn tỉnh/thành phố giao hàng</option>
+            <option value="Hà Nội">Hà Nội</option>
+            <option value="Hà Nam">Hà Nam</option>
+        </select>
+        <p><b>Ngày bắt đầu</b></p>
+        <form><input type="date" id="start_date"></form>
+        <p><b>Ngày kết thúc</b></p>
+        <form><input type="date" id="end_date"></form>
+        <p><b>Chi tiết</b></p>
+        <textarea cols="70" rows="10" placeholder="Chi tiết công việc hoặc hàng hóa" id="detail"></textarea>
+        <p><button onclick="add()">Thêm</button></p>
+        <p><button>Reset</button></p>
+    </div>
+
+    <div>
+        <ul id="listWork"> 
+            <a href="./Bai2.html" target="_blank" id="added_name_task"></a>
+            <p id="added_name_employee"></p>
+            <p id="added_place_receive"></p>
+            <p id="added_start_date"></p>
+            <br>
+        </ul>  
+    </div> 
+    
+
+    <script>
+        function add(){
+            const name_task = $('#name_task').val();
+            const name_employee = $('#name_employee').val();
+            const place_receive = $('select[id="place_receive"]').val();
+            const place_send = $('select[id="place_send"]').val();
+            const start_date = $('#start_date').val();
+            const end_date = $('#end_date').val();
+            const detail = $('#detail').val();
+            const url = `?name_task=${name_task}&name_employee=${name_employee}&place_receive=${place_receive}&place_send=${place_send}&start_date=${start_date}&end_date=${end_date}&detail=${detail}`;
+            const element = `<a href="./Bai2.html${url}" target="_blank">${name_task}</a>
+                <p>${name_employee}</p>
+                <p id="added_place_receive">${place_receive}</p>
+                <p id="added_start_date">${start_date}</p>`;
+            $("#listWork").append(element);
+        }
+    </script>
+</body>

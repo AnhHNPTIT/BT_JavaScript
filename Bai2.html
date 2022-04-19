@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <p id="name_task"></p>
+    <p id="name_employee"></p>
+    <p id="place_send_receive"></p>
+    <p id="start_end_date"></p>
+    <p>Chi tiết</p>
+    <p id="detail"></p>
+
+    <script>
+        function getUrlParameter(sParam) {
+            var sPageURL = window.location.search.substring(1),
+                sURLVariables = sPageURL.split('&'),
+                sParameterName,
+                i;
+
+            for (i = 0; i < sURLVariables.length; i++) {
+                sParameterName = sURLVariables[i].split('=');
+
+                if (sParameterName[0] === sParam) {
+                    return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+                }
+            }
+            return false;
+        };
+        const name_task = getUrlParameter('name_task');
+        $('#name_task').text(name_task)
+        const name_employee = getUrlParameter('name_employee');
+        $('#name_employee').text(name_employee)
+        const place_receive = getUrlParameter('place_receive');
+        const place_send = getUrlParameter('place_send');
+        $('#place_send_receive').text('Nơi nhận hàng: ' + place_receive + ' Nơi giao hàng: ' + place_send)
+        const start_date = getUrlParameter('start_date');
+        const end_date = getUrlParameter('end_date');
+        $('#start_end_date').text('Ngày bắt đầu: ' + start_date + ' Ngày kết thúc: ' + end_date)
+        const detail = getUrlParameter('detail');
+        $('#detail').text(detail)
+
+    </script>
+</body>
